@@ -5,7 +5,6 @@ class SubmitViewHelper extends AbstractFieldViewHelper {
 
 	public function initializeArguments() {
 		parent::initializeArguments();
-		$this->registerArgument('fieldname', 'string', 'The fieldname', TRUE);
 		$this->registerArgument('step', 'string', 'Does the button point to "next" or "prev"?', FALSE, FALSE);
 	}
 

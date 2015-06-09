@@ -8,7 +8,6 @@ class SelectViewHelper extends AbstractFieldViewHelper {
 
 	public function initializeArguments() {
 		parent::initializeArguments();
-		$this->registerArgument('fieldname', 'string', 'The fieldname', TRUE);
 		$this->registerArgument('options', 'array', 'The options', TRUE);
 		$this->registerArgument('renderMode', 'string', 'The render mode', FALSE, self::RENDER_MODE_SELECT);
 	}

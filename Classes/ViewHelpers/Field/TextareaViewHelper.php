@@ -3,11 +3,6 @@ namespace AppZap\FormhandlerFluid\ViewHelpers\Field;
 
 class TextareaViewHelper extends AbstractFieldViewHelper {
 
-	public function initializeArguments() {
-		parent::initializeArguments();
-		$this->registerArgument('fieldname', 'string', 'The fieldname', TRUE);
-	}
-
 	/**
 	 * @return string
 	 */

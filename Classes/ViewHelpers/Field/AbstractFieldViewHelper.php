@@ -6,7 +6,29 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 abstract class AbstractFieldViewHelper extends AbstractViewHelper{
 
 	public function initializeArguments() {
+		$this->registerArgument('excludeFromSummary', 'boolean', 'If true this field will not appear in ff:fieldValuesSummary', FALSE, FALSE);
+		$this->registerArgument('fieldname', 'string', 'The fieldname', TRUE);
 		$this->registerArgument('wrapClass', 'string', 'Class for the wrapping tag', FALSE, 'input-field');
+	}
+
+	public function initialize() {
+		parent::initialize();
+		$this->addToSummary();
+	}
+
+	protected function addToSummary() {
+		if ($this->arguments['excludeFromSummary']) {
+			return;
+		}
+		if (!$this->templateVariableContainer->exists('_formhandler_fluid_fields')) {
+			$this->templateVariableContainer->add('_formhandler_fluid_fields', array());
+		}
+		$fields = $this->templateVariableContainer->get('_formhandler_fluid_fields');
+		$fields[$this->arguments['fieldname']] = array(
+			'viewHelper' => $this,
+		);
+		$this->templateVariableContainer->remove('_formhandler_fluid_fields');
+		$this->templateVariableContainer->add('_formhandler_fluid_fields', $fields);
 	}
 
 	/**
