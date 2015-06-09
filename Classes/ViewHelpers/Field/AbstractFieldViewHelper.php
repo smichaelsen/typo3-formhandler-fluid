@@ -1,11 +1,17 @@
 <?php
 namespace AppZap\FormhandlerFluid\ViewHelpers\Field;
 
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
-abstract class AbstractFieldViewHelper extends AbstractViewHelper{
+abstract class AbstractFieldViewHelper extends AbstractTagBasedViewHelper {
+
+	/**
+	 * @var string
+	 */
+	protected $tagName = 'input';
 
 	public function initializeArguments() {
+		$this->registerUniversalTagAttributes();
 		$this->registerArgument('excludeFromSummary', 'boolean', 'If true this field will not appear in ff:fieldValuesSummary', FALSE, FALSE);
 		$this->registerArgument('fieldname', 'string', 'The fieldname', TRUE);
 		$this->registerArgument('wrapClass', 'string', 'Class for the wrapping tag', FALSE, 'input-field');

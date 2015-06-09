@@ -22,14 +22,15 @@ class CheckboxViewHelper extends AbstractFieldViewHelper {
 			$this->getInputName(),
 			'0'
 		);
-		$inputContent .= sprintf(
-			'<input type="checkbox" id="%s" name="%s" class="%s" value="%s" %s/>',
-			$this->getInputId(),
-			$this->getInputName(),
-			$this->getInputClass(),
-			'1',
-			$this->getOptionChecked('1')
-		);
+		$this->tag->addAttributes(array(
+			'type' => 'checkbox',
+			'id' => $this->getInputId(),
+			'name' => $this->getInputName(),
+			'class' => trim($this->arguments['class'] . ' ' . $this->getInputClass()),
+			'value' => '1',
+			$this->getOptionChecked('1') => NULL
+		));
+		$inputContent .= $this->tag->render();
 		return $inputContent;
 	}
 
