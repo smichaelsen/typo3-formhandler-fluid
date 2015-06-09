@@ -1,0 +1,3 @@
+plugin.Tx_Formhandler.settings {
+	templateFile = FLUIDTEMPLATE
+}
