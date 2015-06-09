@@ -13,7 +13,7 @@ class TranslateViewHelper extends AbstractViewHelper{
 	 * @return string
 	 */
 	public function render() {
-		return '###LLL:' . $this->arguments['key'] . '###';
+		return '###LLL:label.' . $this->arguments['key'] . '###';
 	}
 
 }
