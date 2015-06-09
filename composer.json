@@ -1,0 +1,12 @@
+{
+	"name": "smichaelsen/formhandler-fluid",
+	"authors": [
+		{
+			"name": "Sebastian Michaelsen",
+			"email": "sebastian@app-zap.de",
+			"role": "developer"
+		}
+	],
+	"description": "Fluid powered formhandler",
+	"type": "typo3-cms-extension"
+}
