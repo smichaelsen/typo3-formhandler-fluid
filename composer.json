@@ -8,5 +8,10 @@
 		}
 	],
 	"description": "Fluid powered formhandler",
-	"type": "typo3-cms-extension"
+	"type": "typo3-cms-extension",
+	"autoload": {
+		"psr-4": {
+			"AppZap\\FormhandlerFluid\\": "Classes/"
+		}
+	}
 }
