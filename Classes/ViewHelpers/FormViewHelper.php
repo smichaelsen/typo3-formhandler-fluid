@@ -19,12 +19,14 @@ class FormViewHelper extends AbstractTagBasedViewHelper {
 	 * @return string
 	 */
 	public function render() {
+		$this->tag->addAttribute('id', '###formID###');
 		$this->tag->addAttribute('method', 'post');
 		$this->tag->addAttribute('enctype', 'multipart/form-data');
 		$this->tag->addAttribute('action', '###REL_URL###');
 		$content = $this->renderChildren();
 		$this->tag->setContent($content);
-		return '<!-- ###TEMPLATE_FORM' . $this->arguments['step'] . '### begin -->' . $this->tag->render() . '<!-- ###TEMPLATE_FORM' . $this->arguments['step'] . '### end -->';
+		$content = '<!-- ###TEMPLATE_FORM' . $this->arguments['step'] . '### begin -->' . $this->tag->render() . '<!-- ###TEMPLATE_FORM' . $this->arguments['step'] . '### end -->';
+		return $content;
 	}
 
 }
