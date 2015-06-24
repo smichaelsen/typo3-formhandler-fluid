@@ -14,6 +14,8 @@ abstract class AbstractFieldViewHelper extends AbstractTagBasedViewHelper {
 		$this->registerUniversalTagAttributes();
 		$this->registerArgument('excludeFromSummary', 'boolean', 'If true this field will not appear in ff:fieldValuesSummary', FALSE, FALSE);
 		$this->registerArgument('fieldname', 'string', 'The fieldname', TRUE);
+		$this->registerArgument('label', 'string', 'By default ###LLL:field.{fieldname}.label### will be used as label. This argument can be used to overwrite it.', FALSE, NULL);
+		$this->registerArgument('printf', 'array', 'printf arguments for the label. Only applicable if the label attribute is set', FALSE, NULL);
 		$this->registerArgument('wrapClass', 'string', 'Class for the wrapping tag', FALSE, 'input-field');
 	}
 
@@ -41,7 +43,16 @@ abstract class AbstractFieldViewHelper extends AbstractTagBasedViewHelper {
 	 * @return string
 	 */
 	protected function renderFieldLabel() {
-		return '<label for="' . $this->getInputId() . '">###LLL:field.' . $this->arguments['fieldname'] . '.label######required_' . $this->arguments['fieldname'] . '###</label>';
+		if ($this->arguments['label'] === NULL) {
+			$label = '###LLL:field.' . $this->arguments['fieldname'] . '.label###';
+		} else {
+			if (is_array($this->arguments['printf'])) {
+				$label = vsprintf($this->arguments['label'], $this->arguments['printf']);
+			} else {
+				$label = $this->arguments['label'];
+			}
+		}
+		return '<label for="' . $this->getInputId() . '">' . $label . '###required_' . $this->arguments['fieldname'] . '###</label>';
 	}
 
 	/**
